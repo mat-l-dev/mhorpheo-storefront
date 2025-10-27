@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Zap, Shield, Headphones } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
+import { getFeaturedProducts } from '@/lib/supabase/products'
+import { ProductCard } from '@/components/products/ProductCard'
+import { ProductSkeletonGrid } from '@/components/products/ProductSkeleton'
 
 const benefits = [
   {
@@ -45,6 +49,11 @@ const itemVariants = {
 }
 
 export default function HomePage() {
+  const { data: featuredProducts, isLoading } = useQuery({
+    queryKey: ['products', 'featured'],
+    queryFn: () => getFeaturedProducts(3),
+  })
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -124,23 +133,38 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          {/* Placeholder para productos */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="flex aspect-square items-center justify-center rounded-2xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-900"
+          {/* Loading State */}
+          {isLoading && <ProductSkeletonGrid count={3} />}
+
+          {/* Products Grid */}
+          {!isLoading && featuredProducts && featuredProducts.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {featuredProducts.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} />
+              ))}
+            </motion.div>
+          )}
+
+          {/* Empty State */}
+          {!isLoading &&
+            (!featuredProducts || featuredProducts.length === 0) && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-gray-200 bg-gray-50 p-12 text-center dark:border-gray-800 dark:bg-gray-900"
               >
-                <p className="text-gray-400 dark:text-gray-600">Producto {i}</p>
-              </div>
-            ))}
-          </motion.div>
+                <p className="text-lg text-gray-600 dark:text-gray-400">
+                  Próximamente dispondremos de productos.
+                </p>
+              </motion.div>
+            )}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

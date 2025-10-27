@@ -25,6 +25,10 @@ export type Category = {
   updated_at: string
 }
 
+export type ProductWithCategory = Product & {
+  categories: Category
+}
+
 export type Customer = {
   id: string
   name: string
