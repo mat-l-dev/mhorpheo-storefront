@@ -238,15 +238,17 @@ export default function HomePage() {
               Contáctanos y te ayudaremos a elegir el kit perfecto para tus
               necesidades
             </p>
-            <Link href="/contacto">
-              <Button
-                size="lg"
-                className="bg-white px-8 py-6 text-lg text-black transition-all duration-300 hover:bg-gray-100 dark:bg-black dark:text-white dark:hover:bg-gray-900"
-              >
-                Contactar Ahora
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/contacto">
+                <Button
+                  size="lg"
+                  className="bg-white px-8 py-6 text-lg text-black transition-all duration-300 hover:bg-gray-100 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+                >
+                  Contactar Ahora
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

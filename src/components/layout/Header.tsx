@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import ThemeToggle from '@/components/ThemeToggle'
+import { useCart } from '@/contexts/CartContext'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -18,7 +19,7 @@ const navLinks = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
-  const [cartCount, setCartCount] = useState(0)
+  const { itemCount } = useCart()
   const { scrollY } = useScroll()
 
   useEffect(() => {
@@ -26,15 +27,6 @@ export function Header() {
       setScrolled(latest > 50)
     })
   }, [scrollY])
-
-  // TODO: Conectar con el estado real del carrito
-  useEffect(() => {
-    // Placeholder: obtener cantidad del carrito desde localStorage o context
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    setCartCount(
-      cart.reduce((sum: number, item: any) => sum + item.quantity, 0),
-    )
-  }, [])
 
   return (
     <motion.header
@@ -85,12 +77,12 @@ export function Header() {
                 className="relative hover:bg-gray-100 dark:hover:bg-gray-900"
               >
                 <ShoppingCart className="h-5 w-5" />
-                {cartCount > 0 && (
+                {itemCount > 0 && (
                   <Badge
                     variant="destructive"
                     className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center p-0 text-xs"
                   >
-                    {cartCount}
+                    {itemCount}
                   </Badge>
                 )}
               </Button>

@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ShoppingCart, Package } from 'lucide-react'
+import { Package } from 'lucide-react'
 import { ProductWithCategory } from '@/types/database.types'
 import { formatPrice } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { AddToCartButton } from '@/components/products/AddToCartButton'
 
 type ProductCardProps = {
   product: ProductWithCategory
@@ -90,14 +90,17 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </p>
 
         {/* Botón de agregar al carrito */}
-        <Button
+        <AddToCartButton
+          product={{
+            id: product.id,
+            name: product.name,
+            slug: product.slug,
+            image_url: product.image_url || '/placeholder-product.jpg',
+            selling_price: product.selling_price,
+            stock: product.stock,
+          }}
           className="mt-auto w-full"
-          disabled={isOutOfStock}
-          variant={isOutOfStock ? 'outline' : 'default'}
-        >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          {isOutOfStock ? 'No Disponible' : 'Agregar al Carrito'}
-        </Button>
+        />
       </div>
     </motion.div>
   )

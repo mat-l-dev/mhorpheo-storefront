@@ -5,8 +5,10 @@ import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import { CartProvider } from '@/providers/CartProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { Toaster } from 'sonner'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -40,13 +42,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ReactQueryProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <Analytics />
-            </div>
-            <ReactQueryDevtools initialIsOpen={false} />
+            <CartProvider>
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <Analytics />
+              </div>
+              <Toaster position="top-center" richColors />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </CartProvider>
           </ReactQueryProvider>
         </ThemeProvider>
       </body>
