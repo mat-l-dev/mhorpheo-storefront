@@ -12,14 +12,27 @@ const footerLinks = {
     { href: '/contacto', label: 'Contacto' },
   ],
   informacion: [
+    { href: '/nosotros', label: 'Nosotros' },
     { href: '/como-comprar', label: 'Cómo Comprar' },
     { href: '/garantia', label: 'Garantía' },
     { href: '/faq', label: 'Preguntas Frecuentes' },
-    { href: '/contacto', label: 'Soporte' },
   ],
   legal: [
     { href: '/terminos', label: 'Términos y Condiciones' },
     { href: '/privacidad', label: 'Política de Privacidad' },
+  ],
+  soporte: [
+    { href: '/contacto', label: 'Contacto' },
+    {
+      href: 'https://wa.me/51999888777',
+      label: 'WhatsApp Ventas',
+      external: true,
+    },
+    {
+      href: 'https://wa.me/51999888666',
+      label: 'WhatsApp Soporte',
+      external: true,
+    },
   ],
   social: [
     { href: 'https://facebook.com', icon: Facebook, label: 'Facebook' },
@@ -102,7 +115,7 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          {/* Columna 4: Legal */}
+          {/* Columna 4: Legal y Soporte */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,6 +134,33 @@ export function Footer() {
                   >
                     {link.label}
                   </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="mb-4 mt-6 text-sm font-semibold uppercase tracking-wider">
+              Soporte
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.soporte.map((link) => (
+                <li key={link.href}>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-gray-400 transition-colors duration-200 hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-gray-400 transition-colors duration-200 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

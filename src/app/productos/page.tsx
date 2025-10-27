@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getPublishedProducts } from '@/lib/supabase/products'
 import { ProductCard } from '@/components/products/ProductCard'
 import { ProductSkeletonGrid } from '@/components/products/ProductSkeleton'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 import { AlertCircle } from 'lucide-react'
 
 export default function ProductosPage() {
@@ -21,6 +22,9 @@ export default function ProductosPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <div className="container mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: 'Productos' }]} />
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

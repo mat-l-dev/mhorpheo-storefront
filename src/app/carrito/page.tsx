@@ -6,6 +6,7 @@ import { ShoppingBag } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartItemCard } from '@/components/cart/CartItemCard'
 import { OrderSummary } from '@/components/cart/OrderSummary'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 import { useCart } from '@/contexts/CartContext'
 
 export default function CartPage() {
@@ -16,6 +17,9 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-white transition-colors duration-300 dark:bg-black">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: 'Carrito' }]} />
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

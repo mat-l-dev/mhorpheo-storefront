@@ -7,6 +7,7 @@ import { ChevronRight, Loader2, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PaymentMethodSelector } from '@/components/checkout/PaymentMethodSelector'
 import { PaymentProofUpload } from '@/components/checkout/PaymentProofUpload'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 import { useCart } from '@/contexts/CartContext'
 import { formatCurrency } from '@/utils/format'
 import { createOrder } from '@/actions/orders/createOrder'
@@ -134,23 +135,12 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-white py-12 transition-colors duration-300 dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <Link
-            href="/"
-            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
-          >
-            Home
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <Link
-            href="/carrito"
-            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
-          >
-            Carrito
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-gray-900 dark:text-white">Checkout</span>
-        </nav>
+        <Breadcrumbs
+          items={[
+            { label: 'Carrito', href: '/carrito' },
+            { label: 'Checkout' },
+          ]}
+        />
 
         {/* Page Title */}
         <h1 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">

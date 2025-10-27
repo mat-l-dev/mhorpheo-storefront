@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin paths if any
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://mhorpheo.com/sitemap.xml

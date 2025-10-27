@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import type { Metadata } from 'next'
 import { motion } from 'framer-motion'
 import { Mail, Phone, Clock, MapPin, MessageSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -14,7 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useToast } from '@/hooks/use-toast'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 const contactSchema = z.object({
@@ -28,7 +28,6 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>
 
 export default function ContactoPage() {
-  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
@@ -49,10 +48,9 @@ export default function ContactoPage() {
       // Simular envío (TODO: Implementar envío real de email)
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      toast({
-        title: '¡Mensaje enviado!',
-        description: 'Nos pondremos en contacto contigo pronto.',
-      })
+      toast.success(
+        '¡Mensaje enviado! Nos pondremos en contacto contigo pronto.',
+      )
 
       // Limpiar formulario
       setFormData({
@@ -64,18 +62,9 @@ export default function ContactoPage() {
       })
     } catch (error) {
       if (error instanceof z.ZodError) {
-        toast({
-          title: 'Error de validación',
-          description: error.issues[0].message,
-          variant: 'destructive',
-        })
+        toast.error(error.issues[0].message)
       } else {
-        toast({
-          title: 'Error',
-          description:
-            'Hubo un error al enviar el mensaje. Intenta nuevamente.',
-          variant: 'destructive',
-        })
+        toast.error('Hubo un error al enviar el mensaje. Intenta nuevamente.')
       }
     } finally {
       setIsLoading(false)
@@ -85,6 +74,9 @@ export default function ContactoPage() {
   return (
     <div className="min-h-screen px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: 'Contacto' }]} />
+
         {/* Header */}
         <motion.div
           className="mb-16 text-center"

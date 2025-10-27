@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Zap, Shield, Headphones } from 'lucide-react'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -22,7 +23,7 @@ export default function NosotrosPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative flex h-[70vh] items-center justify-center overflow-hidden bg-gradient-to-b from-black to-zinc-900">
-        <div className="absolute inset-0 bg-[url('/assets/hero-nosotros.jpg')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black opacity-50" />
         <div className="relative z-10 px-4 text-center sm:px-6 lg:px-8">
           <motion.h1
             className="mb-6 text-5xl font-bold text-white sm:text-6xl lg:text-7xl"
@@ -46,6 +47,9 @@ export default function NosotrosPage() {
       {/* Nuestra Historia */}
       <section className="bg-zinc-50 px-4 py-16 dark:bg-zinc-950 sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
+          {/* Breadcrumbs */}
+          <Breadcrumbs items={[{ label: 'Nosotros' }]} />
+
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, x: -30 }}

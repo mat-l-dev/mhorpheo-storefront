@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import ThemeProvider from '@/providers/ThemeProvider'
 import NextTopLoader from 'nextjs-toploader'
@@ -8,6 +9,7 @@ import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import { CartProvider } from '@/providers/CartProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
 import { Toaster } from 'sonner'
 import { Toaster as ToasterUI } from '@/components/ui/toaster'
 
@@ -15,11 +17,60 @@ const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000'
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Mhorpheo - Energía Solar para Starlink',
+  title: {
+    default: 'Mhorpheo - Kits Solares para Starlink',
+    template: '%s | Mhorpheo',
+  },
   description:
-    'Kits de energía solar para Starlink. Conectividad confiable en zonas remotas sin electricidad.',
+    'Kits de energía solar para Starlink. Lleva internet de alta velocidad a zonas remotas sin electricidad. Envíos a todo Perú.',
+  keywords: [
+    'starlink peru',
+    'kit solar starlink',
+    'energia solar',
+    'internet rural',
+    'starlink zonas remotas',
+    'panel solar',
+    'bateria litio',
+    'internet satelital',
+  ],
+  authors: [{ name: 'Mhorpheo' }],
+  creator: 'Mhorpheo',
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: defaultUrl,
+    siteName: 'Mhorpheo',
+    title: 'Mhorpheo - Kits Solares para Starlink',
+    description:
+      'Kits de energía solar para Starlink. Internet en zonas remotas sin electricidad.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Mhorpheo - Kits Solares para Starlink',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mhorpheo - Kits Solares para Starlink',
+    description: 'Internet en zonas remotas. Kits solares para Starlink.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({
@@ -48,6 +99,7 @@ export default function RootLayout({
                 <Header />
                 <main className="flex-1">{children}</main>
                 <Footer />
+                <WhatsAppButton />
                 <Analytics />
               </div>
               <Toaster position="top-center" richColors />
