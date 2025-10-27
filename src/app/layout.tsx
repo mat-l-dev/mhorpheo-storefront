@@ -9,6 +9,7 @@ import { CartProvider } from '@/providers/CartProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Toaster } from 'sonner'
+import { Toaster as ToasterUI } from '@/components/ui/toaster'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -50,6 +51,7 @@ export default function RootLayout({
                 <Analytics />
               </div>
               <Toaster position="top-center" richColors />
+              <ToasterUI />
               <ReactQueryDevtools initialIsOpen={false} />
             </CartProvider>
           </ReactQueryProvider>

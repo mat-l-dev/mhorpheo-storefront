@@ -57,3 +57,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Estilos para contenido de artículos (páginas legales) */
+.prose {
+  @apply text-foreground;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold mt-8 mb-4 scroll-mt-20;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold mt-6 mb-3;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-4 space-y-2;
+}
+
+.prose ol {
+  @apply list-decimal pl-6 mb-4 space-y-2;
+}
+
+.prose li {
+  @apply leading-relaxed;
+}
+
+.prose a {
+  @apply text-primary hover:underline;
+}
+
+.prose strong {
+  @apply font-semibold;
+}
