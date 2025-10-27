@@ -23,9 +23,10 @@ export function Header() {
   const { scrollY } = useScroll()
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.on('change', (latest) => {
       setScrolled(latest > 50)
     })
+    return unsubscribe
   }, [scrollY])
 
   return (

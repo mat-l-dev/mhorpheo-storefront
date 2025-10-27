@@ -67,3 +67,21 @@ export type OrderItem = {
   quantity: number
   unit_price: number
 }
+
+export type Database = {
+  public: {
+    Tables: {
+      products: { Row: Product }
+      categories: { Row: Category }
+      customers: { Row: Customer }
+      orders: { Row: Order }
+      order_items: { Row: OrderItem }
+    }
+    Functions: {
+      decrement_product_stock: {
+        Args: { product_id: string; quantity: number }
+        Returns: void
+      }
+    }
+  }
+}

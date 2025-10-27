@@ -57,10 +57,10 @@ export function OrderSummary() {
 
       {/* Payment Methods Note */}
       <div className="flex items-start gap-2 rounded-lg bg-neutral-50 p-3 dark:bg-neutral-800/50">
-        <Lock className="h-4 w-4 flex-shrink-0 text-neutral-500 dark:text-neutral-400" />
+        <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-neutral-500 dark:text-neutral-400" />
         <p className="text-xs text-neutral-600 dark:text-neutral-400">
-          Pago seguro. Aceptamos tarjetas de crédito, débito y transferencias
-          bancarias.
+          Pago seguro mediante transferencia bancaria, Yape o Plin. Verificamos
+          tu pago antes de procesar el pedido.
         </p>
       </div>
     </div>
