@@ -14,3 +14,18 @@ export function formatPrice(price: number): string {
     currency: 'PEN',
   }).format(price)
 }
+
+/**
+ * Formatea una fecha como string legible en español
+ * @param dateString - La fecha en formato ISO string
+ * @returns La fecha formateada (ej: "27 de octubre de 2025, 14:30")
+ */
+export function formatDate(dateString: string): string {
+  return new Intl.DateTimeFormat('es-PE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(dateString))
+}
