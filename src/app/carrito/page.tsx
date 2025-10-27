@@ -14,7 +14,7 @@ export default function CartPage() {
   const isEmpty = items.length === 0
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen bg-white transition-colors duration-300 dark:bg-black">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -23,10 +23,10 @@ export default function CartPage() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Tu Carrito
           </h1>
-          <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+          <p className="mt-2 text-gray-600 dark:text-gray-400">
             {isEmpty
               ? 'No tienes productos en tu carrito'
               : `${items.length} ${
@@ -43,19 +43,23 @@ export default function CartPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mx-auto max-w-md space-y-8 py-16 text-center"
           >
-            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
-              <ShoppingBag className="h-16 w-16 text-neutral-400" />
+            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-900">
+              <ShoppingBag className="h-16 w-16 text-gray-400 dark:text-gray-500" />
             </div>
             <div className="space-y-3">
-              <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
                 Tu carrito está vacío
               </h2>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <p className="text-gray-600 dark:text-gray-400">
                 Parece que aún no has agregado ningún producto. ¡Descubre
                 nuestra colección!
               </p>
             </div>
-            <Button asChild size="lg">
+            <Button
+              asChild
+              size="lg"
+              className="transition-all duration-300 hover:scale-105"
+            >
               <Link href="/productos">Ver Productos</Link>
             </Button>
           </motion.div>
@@ -84,7 +88,7 @@ export default function CartPage() {
               <div className="pt-4">
                 <Link
                   href="/productos"
-                  className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                  className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   ← Continuar Comprando
                 </Link>

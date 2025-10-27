@@ -33,7 +33,7 @@ export default function RootLayout({
       style={{ colorScheme: 'dark' }}
       suppressHydrationWarning
     >
-      <body className="bg-background text-foreground">
+      <body className="bg-white text-gray-900 transition-colors duration-300 dark:bg-black dark:text-white">
         <NextTopLoader showSpinner={false} height={2} color="#2acf80" />
         <ThemeProvider
           attribute="class"

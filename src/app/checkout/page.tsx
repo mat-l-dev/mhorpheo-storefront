@@ -43,17 +43,20 @@ export default function CheckoutPage() {
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-neutral-100 p-6 dark:bg-neutral-800">
-              <AlertCircle className="h-12 w-12 text-neutral-400" />
+            <div className="rounded-full bg-gray-100 p-6 dark:bg-gray-900">
+              <AlertCircle className="h-12 w-12 text-gray-400 dark:text-gray-500" />
             </div>
           </div>
-          <h1 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white">
+          <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
             Tu carrito está vacío
           </h1>
-          <p className="mb-8 text-neutral-600 dark:text-neutral-400">
+          <p className="mb-8 text-gray-600 dark:text-gray-400">
             Agrega productos a tu carrito antes de proceder al checkout.
           </p>
-          <Button asChild>
+          <Button
+            asChild
+            className="transition-all duration-300 hover:scale-105"
+          >
             <Link href="/productos">Ver Productos</Link>
           </Button>
         </div>
@@ -128,29 +131,29 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 py-12 dark:bg-neutral-950">
+    <div className="min-h-screen bg-white py-12 transition-colors duration-300 dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+        <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
           <Link
             href="/"
-            className="hover:text-neutral-900 dark:hover:text-white"
+            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
           >
             Home
           </Link>
           <ChevronRight className="h-4 w-4" />
           <Link
             href="/carrito"
-            className="hover:text-neutral-900 dark:hover:text-white"
+            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
           >
             Carrito
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-neutral-900 dark:text-white">Checkout</span>
+          <span className="text-gray-900 dark:text-white">Checkout</span>
         </nav>
 
         {/* Page Title */}
-        <h1 className="mb-8 text-3xl font-bold text-neutral-900 dark:text-white md:text-4xl">
+        <h1 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
           Finalizar Pedido
         </h1>
 
@@ -160,12 +163,12 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2">
               <div className="space-y-8">
                 {/* Step 1: Customer Information */}
-                <div className="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+                <div className="rounded-2xl border border-gray-200 bg-white p-6 transition-colors duration-300 dark:border-gray-800 dark:bg-gray-950">
                   <div className="mb-6 flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 text-sm font-semibold text-white dark:bg-white dark:text-neutral-900">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm font-semibold text-white dark:bg-white dark:text-gray-900">
                       1
                     </div>
-                    <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                       Información del Cliente
                     </h2>
                   </div>
@@ -175,7 +178,7 @@ export default function CheckoutPage() {
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="name"
-                        className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white"
+                        className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Nombre completo *
                       </label>
@@ -184,14 +187,14 @@ export default function CheckoutPage() {
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className={`w-full rounded-lg border bg-white px-4 py-2.5 text-neutral-900 focus:outline-none focus:ring-2 dark:bg-neutral-900 dark:text-white ${
+                        className={`w-full rounded-lg border bg-white px-4 py-2.5 text-gray-900 transition-colors duration-200 focus:outline-none focus:ring-2 dark:bg-gray-900 dark:text-white ${
                           errors.name
                             ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-neutral-300 focus:border-neutral-900 focus:ring-neutral-900/20 dark:border-neutral-700 dark:focus:border-white dark:focus:ring-white/20'
+                            : 'border-gray-300 focus:border-gray-900 focus:ring-gray-900/20 dark:border-gray-700 dark:focus:border-white dark:focus:ring-white/20'
                         }`}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-sm text-red-600">
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                           {errors.name}
                         </p>
                       )}

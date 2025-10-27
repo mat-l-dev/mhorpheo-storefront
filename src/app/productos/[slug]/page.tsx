@@ -125,27 +125,25 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen bg-white transition-colors duration-300 dark:bg-black">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+        <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
           <Link
             href="/"
-            className="transition-colors hover:text-neutral-900 dark:hover:text-white"
+            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
           >
             Home
           </Link>
           <ChevronRight className="h-4 w-4" />
           <Link
             href="/productos"
-            className="transition-colors hover:text-neutral-900 dark:hover:text-white"
+            className="transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
           >
             Productos
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-neutral-900 dark:text-white">
-            {product.name}
-          </span>
+          <span className="text-gray-900 dark:text-white">{product.name}</span>
         </nav>
 
         {/* Product Detail */}

@@ -62,16 +62,16 @@ export function OrderTimeline({ currentStatus }: OrderTimelineProps) {
       <div className="space-y-6">
         <div className="flex gap-4">
           <div className="flex flex-col items-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-              <CheckCircle2 className="h-5 w-5 text-green-600" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+              <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-500" />
             </div>
-            <div className="mt-2 h-12 w-0.5 bg-gray-200" />
+            <div className="mt-2 h-12 w-0.5 bg-gray-200 dark:bg-gray-800" />
           </div>
           <div className="flex-1 pb-8">
-            <h4 className="text-sm font-semibold text-gray-900">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
               Pedido realizado
             </h4>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               Tu pedido ha sido recibido
             </p>
           </div>
@@ -79,15 +79,15 @@ export function OrderTimeline({ currentStatus }: OrderTimelineProps) {
 
         <div className="flex gap-4">
           <div className="flex flex-col items-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-              <XCircle className="h-5 w-5 text-red-600" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+              <XCircle className="h-5 w-5 text-red-600 dark:text-red-500" />
             </div>
           </div>
           <div className="flex-1">
-            <h4 className="text-sm font-semibold text-gray-900">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
               Orden cancelada
             </h4>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               Esta orden ha sido cancelada
             </p>
           </div>
@@ -110,28 +110,30 @@ export function OrderTimeline({ currentStatus }: OrderTimelineProps) {
             <div className="flex flex-col items-center">
               {/* Icon */}
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 ${
                   isCompleted
-                    ? 'bg-green-100'
+                    ? 'bg-green-100 dark:bg-green-900/30'
                     : isCurrent
-                      ? 'bg-yellow-100'
-                      : 'bg-gray-100'
+                      ? 'bg-yellow-100 dark:bg-yellow-900/30'
+                      : 'bg-gray-100 dark:bg-gray-800'
                 }`}
               >
                 {isCompleted ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-500" />
                 ) : isCurrent ? (
-                  <Clock className="h-5 w-5 animate-pulse text-yellow-600" />
+                  <Clock className="h-5 w-5 animate-pulse text-yellow-600 dark:text-yellow-500" />
                 ) : (
-                  <Circle className="h-5 w-5 text-gray-400" />
+                  <Circle className="h-5 w-5 text-gray-400 dark:text-gray-600" />
                 )}
               </div>
 
               {/* Connector line */}
               {index < steps.length - 1 && (
                 <div
-                  className={`mt-2 h-12 w-0.5 ${
-                    isCompleted ? 'bg-green-200' : 'bg-gray-200'
+                  className={`mt-2 h-12 w-0.5 transition-colors duration-300 ${
+                    isCompleted
+                      ? 'bg-green-200 dark:bg-green-900/50'
+                      : 'bg-gray-200 dark:bg-gray-800'
                   }`}
                 />
               )}
@@ -140,15 +142,19 @@ export function OrderTimeline({ currentStatus }: OrderTimelineProps) {
             {/* Content */}
             <div className="flex-1 pb-8">
               <h4
-                className={`text-sm font-semibold ${
-                  isCompleted || isCurrent ? 'text-gray-900' : 'text-gray-400'
+                className={`text-sm font-semibold transition-colors duration-300 ${
+                  isCompleted || isCurrent
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-400 dark:text-gray-600'
                 }`}
               >
                 {step.label}
               </h4>
               <p
-                className={`mt-1 text-sm ${
-                  isCompleted || isCurrent ? 'text-gray-500' : 'text-gray-400'
+                className={`mt-1 text-sm transition-colors duration-300 ${
+                  isCompleted || isCurrent
+                    ? 'text-gray-500 dark:text-gray-400'
+                    : 'text-gray-400 dark:text-gray-600'
                 }`}
               >
                 {step.description}
