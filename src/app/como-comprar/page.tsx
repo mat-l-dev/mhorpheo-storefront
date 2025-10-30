@@ -17,6 +17,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 
 const pasos = [
   {
@@ -105,9 +106,14 @@ const metodosPago = [
 
 export default function ComoComprarPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Breadcrumbs */}
+      <div className="container mx-auto px-4 pt-8 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ label: 'Cómo Comprar' }]} />
+      </div>
+
       {/* Hero */}
-      <section className="bg-gradient-to-b from-primary/5 to-background px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="bg-gradient-to-b from-primary/5 to-background px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

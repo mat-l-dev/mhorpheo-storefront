@@ -21,6 +21,26 @@ import {
 } from '@/components/ui/accordion'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+}
 
 const categories = [
   {
@@ -152,115 +172,125 @@ export default function FAQPage() {
     .filter((category) => category.questions.length > 0)
 
   return (
-    <div className="min-h-screen px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        {/* Header */}
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            Preguntas Frecuentes
-          </h1>
-          <p className="mx-auto mb-8 max-w-3xl text-xl text-muted-foreground">
-            Encuentra respuestas rápidas a las preguntas más comunes
-          </p>
-
-          {/* Buscador */}
-          <div className="relative mx-auto max-w-md">
-            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Buscar pregunta..."
-              value={searchTerm}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setSearchTerm(e.target.value)
-              }
-              className="h-12 pl-10"
-            />
-          </div>
-        </motion.div>
-
-        {/* Categories & Questions */}
-        <div className="space-y-12">
-          {filteredCategories.length > 0 ? (
-            filteredCategories.map((category, idx) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-              >
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <category.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h2 className="text-2xl font-bold">{category.title}</h2>
-                </div>
-
-                <Accordion type="single" collapsible className="w-full">
-                  {category.questions.map((question, qIdx) => (
-                    <AccordionItem key={qIdx} value={`${category.id}-${qIdx}`}>
-                      <AccordionTrigger className="text-left text-lg">
-                        {question.q}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-base leading-relaxed text-muted-foreground">
-                        {question.a}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </motion.div>
-            ))
-          ) : (
-            <div className="py-12 text-center">
-              <p className="text-lg text-muted-foreground">
-                No se encontraron preguntas que coincidan con tu búsqueda.
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* CTA */}
-        <motion.div
-          className="mt-16 rounded-2xl bg-primary/5 p-8 text-center sm:p-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <h3 className="mb-4 text-2xl font-bold sm:text-3xl">
-            ¿No encuentras tu respuesta?
-          </h3>
-          <p className="mb-8 text-lg text-muted-foreground">
-            Contáctanos por WhatsApp o email. Respondemos en minutos.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg" className="h-12 text-lg">
-              <a
-                href="https://wa.me/51999888777?text=Hola,%20vengo%20de%20la%20web"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageSquare className="mr-2 h-5 w-5" />
-                WhatsApp
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="h-12 text-lg"
-            >
-              <a href="/contacto">
-                <Mail className="mr-2 h-5 w-5" />
-                Email
-              </a>
-            </Button>
-          </div>
-        </motion.div>
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Breadcrumbs */}
+      <div className="container mx-auto px-4 pt-8 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ label: 'Preguntas Frecuentes' }]} />
       </div>
+
+      <main className="container mx-auto px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          {/* Header */}
+          <motion.div
+            className="mb-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
+              Preguntas Frecuentes
+            </h1>
+            <p className="mx-auto mb-8 max-w-3xl text-xl text-muted-foreground">
+              Encuentra respuestas rápidas a las preguntas más comunes
+            </p>
+
+            {/* Buscador */}
+            <div className="relative mx-auto max-w-md">
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Buscar pregunta..."
+                value={searchTerm}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchTerm(e.target.value)
+                }
+                className="h-12 pl-10"
+              />
+            </div>
+          </motion.div>
+
+          {/* Categories & Questions */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-12"
+          >
+            {filteredCategories.length > 0 ? (
+              filteredCategories.map((category) => (
+                <motion.div key={category.id} variants={itemVariants}>
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                      <category.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h2 className="text-2xl font-bold">{category.title}</h2>
+                  </div>
+
+                  <Accordion type="single" collapsible className="w-full">
+                    {category.questions.map((question, qIdx) => (
+                      <AccordionItem
+                        key={qIdx}
+                        value={`${category.id}-${qIdx}`}
+                      >
+                        <AccordionTrigger className="text-left text-lg">
+                          {question.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-base leading-relaxed text-muted-foreground">
+                          {question.a}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </motion.div>
+              ))
+            ) : (
+              <div className="py-12 text-center">
+                <p className="text-lg text-muted-foreground">
+                  No se encontraron preguntas que coincidan con tu búsqueda.
+                </p>
+              </div>
+            )}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            className="mt-16 rounded-2xl bg-primary/5 p-8 text-center sm:p-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <h3 className="mb-4 text-2xl font-bold sm:text-3xl">
+              ¿No encuentras tu respuesta?
+            </h3>
+            <p className="mb-8 text-lg text-muted-foreground">
+              Contáctanos por WhatsApp o email. Respondemos en minutos.
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <Button asChild size="lg" className="h-12 text-lg">
+                <a
+                  href="https://wa.me/51999888777?text=Hola,%20vengo%20de%20la%20web"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  WhatsApp
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-12 text-lg"
+              >
+                <a href="/contacto">
+                  <Mail className="mr-2 h-5 w-5" />
+                  Email
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </main>
     </div>
   )
 }

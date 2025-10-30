@@ -22,11 +22,16 @@ export default function NosotrosPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative flex h-[70vh] items-center justify-center overflow-hidden bg-gradient-to-b from-black to-zinc-900">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black opacity-50" />
+      <section className="relative flex h-[70vh] items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-100 to-zinc-200 dark:bg-black">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-900"
+          initial={{ opacity: 0.6 }}
+          animate={{ opacity: 0.9 }}
+          transition={{ duration: 0.8 }}
+        />
         <div className="relative z-10 px-4 text-center sm:px-6 lg:px-8">
           <motion.h1
-            className="mb-6 text-5xl font-bold text-white sm:text-6xl lg:text-7xl"
+            className="mb-6 text-5xl font-bold text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -34,7 +39,7 @@ export default function NosotrosPage() {
             Conectando lo imposible
           </motion.h1>
           <motion.p
-            className="mx-auto max-w-3xl text-xl text-zinc-300 sm:text-2xl"
+            className="mx-auto max-w-3xl text-xl text-zinc-700 dark:text-zinc-300 sm:text-2xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -48,7 +53,9 @@ export default function NosotrosPage() {
       <section className="bg-zinc-50 px-4 py-16 dark:bg-zinc-950 sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {/* Breadcrumbs */}
-          <Breadcrumbs items={[{ label: 'Nosotros' }]} />
+          <div className="pt-8">
+            <Breadcrumbs items={[{ label: 'Nosotros' }]} />
+          </div>
 
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <motion.div
